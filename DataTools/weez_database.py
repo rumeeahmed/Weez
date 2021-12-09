@@ -14,11 +14,14 @@ class WeezDatabase:
 
     def _initialize_app(self) -> None:
         """
-        Get the credentials, initialise the app and create a connection to the Firestore database.
+        Get the credentials, initialise the app and create a connection to the
+        Firestore database.
         :return: None.
         """
         if not firebase_admin._apps:
-            cred = credentials.Certificate('/Users/rumeeahmed/Documents/Weez/DataTools/service_key.json')
+            cred = credentials.Certificate(
+                '/Users/rumeeahmed/Documents/Weez/DataTools/service_key.json'
+            )
             firebase_admin.initialize_app(cred)
         self.db = firestore.client()
 
@@ -30,11 +33,14 @@ class WeezDatabase:
         """
         for player in player_list:
             player_dict = {"player": player.player_name}
-            self.db.collection('players').document(player.player_name).set(player_dict)
+            self.db.collection('players').document(player.player_name).set(
+                player_dict
+            )
 
     def add_games(self, player_list: list[Player]) -> None:
         """
-        Add a game session to the Firebase database under the `games` collection.
+        Add a game session to the Firebase database under the `games`
+        collection.
         :param player_list: a list containing player objects.
         :return: None.
         """
@@ -52,13 +58,20 @@ class WeezDatabase:
                 'headshots': player.headshots,
                 'revives': player.revives,
                 'teams_wiped': player.teams_wiped,
+                'distance_travelled': player.distance_travelled,
+                'time_moving_percent': player.time_moving,
+                'crates_opened': player.crates_opened,
+                'shop_buys': player.shop_buys,
                 'gn': player.judge,
             }
-            self.db.collection('games').document(player.date).collection(player.player_name).document('stats').set(game)
+            self.db.collection('games').document(player.date).collection(
+                player.player_name
+            ).document('stats').set(game)
 
     def add_awards(self, awards: WeezAwards) -> None:
         """
-        Add the awards generated from a session to the Firebase database under the`awards` collection in
+        Add the awards generated from a session to the Firebase database under
+        the`awards` collection.
         :param awards: an instance of the WeezAwards object.
         :return: None
         """
@@ -74,13 +87,17 @@ class WeezDatabase:
             'tank': awards.tank,
             'gummy_bear': awards.gummy_bear,
             'team_demolisher': awards.team_demolisher,
+            'weary_traveller': awards.weary_traveller,
+            'big_spender': awards.big_spender,
+            'crate_scavenger': awards.crate_scavenger,
             'pussio': awards.pussio,
         }
         self.db.collection('awards').document(awards.date).set(data)
 
     def add_team(self, team: Team) -> None:
         """
-        Add the team stats generated from a session to the Firebase database under the`awards` collection in
+        Add the team stats generated from a session to the Firebase database
+        under the`awards` collection.
         :param team: an instance of the Team object.
         :return: None
         """
@@ -89,7 +106,8 @@ class WeezDatabase:
 
     def _add_total_team_stats(self, team: Team) -> None:
         """
-        Add the total team stats per session into the Firebase database under the `total_team_stats` Collection.
+        Add the total team stats per session into the Firebase database under
+        the `total_team_stats` Collection.
         :param team: an instance of the Team object.
         :return: None.
         """
@@ -109,7 +127,8 @@ class WeezDatabase:
 
     def _add_team_stats_per_game(self, team: Team) -> None:
         """
-        Add the average team stats per game into the Firebase database under the `team_stats_per_game` collection.
+        Add the average team stats per game into the Firebase database under
+        the `team_stats_per_game` collection.
         :param team: an instance of the WeezAwards object.
         :return: None.
         """

@@ -69,7 +69,8 @@ class WeezAwards:
 
     def _get_team_lover_and_hater(self):
         """
-        Calculate the Player that loves the teams and the Player that hates the team.
+        Calculate the Player that loves the team (the highest score) and the
+         Player that hates the team (the lowest score).
         :return: None.
         """
         self.team_lover = None
@@ -87,7 +88,8 @@ class WeezAwards:
 
     def _get_lethality(self):
         """
-        Calculate the most and least lethal Player
+        Calculate the most and least lethal Player. Lethality is calculated by
+        damage per kill.
         :return:None.
         """
         self.lethal_killer = None
@@ -106,8 +108,8 @@ class WeezAwards:
 
     def _get_tank(self):
         """
-        Calculate the Player who requires the most damage for a death and the Player that takes the least damage per
-        death.
+        Calculate the Player who requires the most damage for a death and the
+        Player that takes the least damage per death.
         :return: None.
         """
         self.tank = None
@@ -137,6 +139,45 @@ class WeezAwards:
                 self.team_demolisher = player.player_name
                 max_team_wipes = player.teams_wiped
 
+    def _get_weary_traveller(self):
+        """
+        Calculate the Player with the most team wipes in the session.
+        :return: None.
+        """
+        self.weary_traveller = None
+        max_distance = 0
+
+        for player in self.player_list:
+            if player.distance_travelled > max_distance:
+                self.weary_traveller = player.player_name
+                max_distance = player.teams_wiped
+
+    def _get_big_spender(self):
+        """
+        Calculate the Player with the most team wipes in the session.
+        :return: None.
+        """
+        self.big_spender = None
+        shop_buys = 0
+
+        for player in self.player_list:
+            if player.crates_opened > shop_buys:
+                self.big_spender = player.player_name
+                shop_buys = player.teams_wiped
+
+    def _get_crate_scavenger(self):
+        """
+        Calculate the Player with the most team wipes in the session.
+        :return: None.
+        """
+        self.crate_scavenger = None
+        crates_opened = 0
+
+        for player in self.player_list:
+            if player.crates_opened > crates_opened:
+                self.crate_scavenger = player.player_name
+                crates_opened = player.teams_wiped
+
     def process_player_stats(self):
         """
         Method that calls all the private methods to produce the awards.
@@ -150,6 +191,9 @@ class WeezAwards:
         self._get_lethality()
         self._get_tank()
         self._get_team_demolisher()
+        self._get_weary_traveller()
+        self._get_big_spender()
+        self._get_crate_scavenger()
 
     def show_player_results(self) -> str:
         """
@@ -167,5 +211,8 @@ class WeezAwards:
                   f'{self.tank} is the tank\n' \
                   f'{self.gummy_bear} is the gummy bear\n' \
                   f'{self.team_demolisher} is the team demolisher\n' \
+                  f'{self.weary_traveller} is the weary traveller\n' \
+                  f'{self.big_spender} is the big spender\n' \
+                  f'{self.crate_scavenger} is the crate scavenger\n' \
                   f'{self.pussio} is the pussi o\n'
         return results
