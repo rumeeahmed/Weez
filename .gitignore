@@ -133,3 +133,5 @@ dmypy.json
 
 #PyCharm Files
 .idea/
+
+DataTools/service_key.json
