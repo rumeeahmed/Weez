@@ -150,7 +150,7 @@ class WeezAwards:
         for player in self.player_list:
             if player.distance_travelled > max_distance:
                 self.weary_traveller = player.player_name
-                max_distance = player.teams_wiped
+                max_distance = player.distance_travelled
 
     def _get_big_spender(self):
         """
@@ -161,9 +161,9 @@ class WeezAwards:
         shop_buys = 0
 
         for player in self.player_list:
-            if player.crates_opened > shop_buys:
+            if player.shop_buys > shop_buys:
                 self.big_spender = player.player_name
-                shop_buys = player.teams_wiped
+                shop_buys = player.shop_buys
 
     def _get_crate_scavenger(self):
         """
@@ -176,7 +176,7 @@ class WeezAwards:
         for player in self.player_list:
             if player.crates_opened > crates_opened:
                 self.crate_scavenger = player.player_name
-                crates_opened = player.teams_wiped
+                crates_opened = player.crates_opened
 
     def process_player_stats(self):
         """
