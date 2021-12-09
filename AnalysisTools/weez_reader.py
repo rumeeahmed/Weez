@@ -35,6 +35,7 @@ class Player:
             'Shop Buys': 0,
             'Score': 0,
             'Teams Wiped': 0,
+            'Time Played': 0,
             'Time Spent Moving': 0,
         }
 
@@ -51,7 +52,13 @@ class Player:
             sum['Shop Buys'] += float(stat.get('objectiveBrKioskBuy', 0))
             sum['Score'] += float(stat.get('score', 0))
             sum['Teams Wiped'] += float(stat.get('objectiveTeamWiped', 0))
-            sum['Time Spent Moving'] += float(stat.get('percentTimeMoving', 0))
+
+            time_played = float(stat.get('timePlayed', 0))
+            percent_moving = float(stat.get('percentTimeMoving', 0))
+            time_moving = (time_played * percent_moving) / 100
+
+            sum['Time Played'] += time_played
+            sum['Time Spent Moving'] += time_moving
 
         self._process_attributes(sum)
 
@@ -77,7 +84,10 @@ class Player:
         self.shop_buys = round(summed_stats.get('Shop Buys', 0))
         self.score = round(summed_stats.get('Score', 0))
         self.teams_wiped = round(summed_stats.get('Teams Wiped', 0))
-        self.time_moving = round(summed_stats.get('Time Spent Moving', 0))
+
+        time_played = summed_stats.get('Time Played')
+        time_moving = summed_stats.get('Time Spent Moving')
+        self.time_moving = round((time_moving / time_played) * 100)
 
     def get_stats(self) -> str:
         """
