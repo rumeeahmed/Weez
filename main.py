@@ -1,3 +1,5 @@
+from typing import Dict
+
 from AnalysisTools.weez_analysis import GNCalculator
 from AnalysisTools.weez_reader import Player, Team
 from DataTools.weez_database import WeezDatabase
@@ -7,7 +9,7 @@ from DataTools.gn_bot import GNBot
 from discord.ext import commands
 import sys
 
-#  Create the player dicts with game details
+# Create the player dicts with game details
 rumee_dict = {
     'name': 'Captain Ahmed', 'game_name': 'RumeeAhmed', 'platform': 'PSN'
 }

@@ -19,7 +19,7 @@ class Player:
         individual match data.
         :return: None.
         """
-        sum = {
+        val = {
             'Assists': 0,
             'Crates Opened': 0,
             'Damage': 0,
@@ -40,27 +40,27 @@ class Player:
         }
 
         for stat in stats:
-            sum['Assists'] += float(stat.get('assists', 0))
-            sum['Crates Opened'] += float(stat.get('objectiveBrCacheOpen', 0))
-            sum['Damage'] += float(stat.get('damageDone', 0))
-            sum['Damage Taken'] += float(stat.get('damageTaken', 0))
-            sum['Deaths'] += float(stat.get('deaths', 0))
-            sum['Distance Travelled'] += float(stat.get('distanceTraveled', 0))
-            sum['Headshots'] += float(stat.get('headshots', 0))
-            sum['Kills'] += float(stat.get('kills', 0))
-            sum['Revives'] += float(stat.get('objectiveReviver', 0))
-            sum['Shop Buys'] += float(stat.get('objectiveBrKioskBuy', 0))
-            sum['Score'] += float(stat.get('score', 0))
-            sum['Teams Wiped'] += float(stat.get('objectiveTeamWiped', 0))
+            val['Assists'] += float(stat.get('assists', 0))
+            val['Crates Opened'] += float(stat.get('objectiveBrCacheOpen', 0))
+            val['Damage'] += float(stat.get('damageDone', 0))
+            val['Damage Taken'] += float(stat.get('damageTaken', 0))
+            val['Deaths'] += float(stat.get('deaths', 0))
+            val['Distance Travelled'] += float(stat.get('distanceTraveled', 0))
+            val['Headshots'] += float(stat.get('headshots', 0))
+            val['Kills'] += float(stat.get('kills', 0))
+            val['Revives'] += float(stat.get('objectiveReviver', 0))
+            val['Shop Buys'] += float(stat.get('objectiveBrKioskBuy', 0))
+            val['Score'] += float(stat.get('score', 0))
+            val['Teams Wiped'] += float(stat.get('objectiveTeamWiped', 0))
 
             time_played = float(stat.get('timePlayed', 0))
             percent_moving = float(stat.get('percentTimeMoving', 0))
             time_moving = (time_played * percent_moving) / 100
 
-            sum['Time Played'] += time_played
-            sum['Time Spent Moving'] += time_moving
+            val['Time Played'] += time_played
+            val['Time Spent Moving'] += time_moving
 
-        self._process_attributes(sum)
+        self._process_attributes(val)
 
     def _process_attributes(self, summed_stats: dict) -> None:
         """

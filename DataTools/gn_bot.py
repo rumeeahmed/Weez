@@ -6,8 +6,8 @@ from discord.ext import commands
 
 class GNBot(commands.Cog):
     """
-    Bot object that handles actions on Discord. The primary function is to announce a players judgment in the voice
-    channel.
+    Bot object that handles actions on Discord. The primary function is to
+    announce a players' judgment in the voice channel.
     """
     token = os.environ.get('DISCORD_KEY')
 
@@ -15,7 +15,8 @@ class GNBot(commands.Cog):
         """
 
         :param bot: An instantiated object of Bot.
-        :param messages: A list of object containing messages to send to the Discord channel.
+        :param messages: A list of object containing messages to send to the
+        Discord channel.
         """
         self.bot = bot
         self.message = messages
@@ -37,13 +38,18 @@ class GNBot(commands.Cog):
         :param ctx: discord context parameter.
         :return: JUDGMENT!
         """
-        voice_channel = discord.utils.get(ctx.guild.voice_channels, name='General')
+        voice_channel = discord.utils.get(
+            ctx.guild.voice_channels, name='General'
+        )
         await voice_channel.connect()
         voice = discord.utils.get(self.bot.voice_clients, guild=ctx.guild)
         try:
             voice.play(discord.FFmpegPCMAudio(f"{command}.mp3"))
         except PermissionError:
-            await ctx.send('Wait for the current playing music to end or use the stop command')
+            await ctx.send(
+                'Wait for the current playing music to end or use the stop '
+                'command'
+            )
             return
 
         time.sleep(2)
