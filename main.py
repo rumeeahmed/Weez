@@ -1,5 +1,3 @@
-from typing import Dict
-
 from AnalysisTools.weez_analysis import GNCalculator
 from AnalysisTools.weez_reader import Player, Team
 from DataTools.weez_database import WeezDatabase

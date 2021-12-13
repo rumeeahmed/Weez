@@ -1,6 +1,6 @@
-from AnalysisTools.weez_awards import WeezAwards
 from AnalysisTools.weez_reader import Player, Team
 from firebase_admin import credentials, firestore
+from AnalysisTools.weez_awards import WeezAwards
 import firebase_admin
 
 
