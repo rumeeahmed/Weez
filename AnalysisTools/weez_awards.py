@@ -15,7 +15,7 @@ class WeezAwards:
         self.pussio = 'Cheen'
         self.date = player_list[0].date
 
-    def _get_bullet_bitch(self):
+    def _get_bullet_bitch(self) -> None:
         """
         Calculate the Player who has absorbed the most damage in the session.
         :return: None.
@@ -28,7 +28,7 @@ class WeezAwards:
                 self.bullet_bitch = player.player_name
                 max_damage = player.damage_taken
 
-    def _get_medic(self):
+    def _get_medic(self) -> None:
         """
         Calculate the Player with the most revives in the session.
         :return: None.
@@ -41,7 +41,7 @@ class WeezAwards:
                 self.medic = player.player_name
                 max_revives = player.revives
 
-    def _get_head_master(self):
+    def _get_head_master(self) -> None:
         """
         Calculate the Player with the most headshots in the session.
         :return: None.
@@ -54,7 +54,7 @@ class WeezAwards:
                 self.head_master = player.player_name
                 max_headshots = player.headshots
 
-    def _get_assister(self):
+    def _get_assister(self) -> None:
         """
         Calculate the Player with the most assists in the session.
         :return: None.
@@ -67,7 +67,7 @@ class WeezAwards:
                 self.top_assister = player.player_name
                 max_assists = player.assists
 
-    def _get_team_lover_and_hater(self):
+    def _get_team_lover_and_hater(self) -> None:
         """
         Calculate the Player that loves the team (the highest score) and the
          Player that hates the team (the lowest score).
@@ -86,7 +86,7 @@ class WeezAwards:
                 self.team_hater = player.player_name
                 min_score = player.score
 
-    def _get_lethality(self):
+    def _get_lethality(self) -> None:
         """
         Calculate the most and least lethal Player. Lethality is calculated by
         damage per kill.
@@ -106,7 +106,7 @@ class WeezAwards:
                 self.lethal_killer = player.player_name
                 min_lethality = ratio
 
-    def _get_tank(self):
+    def _get_tank(self) -> None:
         """
         Calculate the Player who requires the most damage for a death and the
         Player that takes the least damage per death.
@@ -126,7 +126,7 @@ class WeezAwards:
                 self.gummy_bear = player.player_name
                 min_value = ratio
 
-    def _get_team_demolisher(self):
+    def _get_team_demolisher(self) -> None:
         """
         Calculate the Player with the most team wipes in the session.
         :return: None.
@@ -139,7 +139,7 @@ class WeezAwards:
                 self.team_demolisher = player.player_name
                 max_team_wipes = player.teams_wiped
 
-    def _get_weary_traveller(self):
+    def _get_weary_traveller(self) -> None:
         """
         Calculate the Player with the most team wipes in the session.
         :return: None.
@@ -152,7 +152,7 @@ class WeezAwards:
                 self.weary_traveller = player.player_name
                 max_distance = player.distance_travelled
 
-    def _get_big_spender(self):
+    def _get_big_spender(self) -> None:
         """
         Calculate the Player with the most team wipes in the session.
         :return: None.
@@ -165,12 +165,12 @@ class WeezAwards:
                 self.big_spender = player.player_name
                 shop_buys = player.shop_buys
 
-    def _get_crate_scavenger(self):
+    def _get_hungry_bitch(self) -> None:
         """
         Calculate the Player with the most team wipes in the session.
         :return: None.
         """
-        self.crate_scavenger = None
+        self.hungry_bitch = None
         crates_opened = 0
 
         for player in self.player_list:
@@ -178,7 +178,7 @@ class WeezAwards:
                 self.crate_scavenger = player.player_name
                 crates_opened = player.crates_opened
 
-    def process_player_stats(self):
+    def process_player_stats(self) -> None:
         """
         Method that calls all the private methods to produce the awards.
         :return: None.
@@ -193,7 +193,7 @@ class WeezAwards:
         self._get_team_demolisher()
         self._get_weary_traveller()
         self._get_big_spender()
-        self._get_crate_scavenger()
+        self._get_hungry_bitch()
 
     def show_player_results(self) -> str:
         """
@@ -213,6 +213,6 @@ class WeezAwards:
                   f'{self.team_demolisher} is the team demolisher\n' \
                   f'{self.weary_traveller} is the weary traveller\n' \
                   f'{self.big_spender} is the big spender\n' \
-                  f'{self.crate_scavenger} is the crate scavenger\n' \
+                  f'{self.crate_scavenger} is the hungry bitch\n' \
                   f'{self.pussio} is the pussi o\n'
         return results

@@ -67,7 +67,7 @@ class Player:
         Process the summed dictionary and convert them into attributes.
         :param summed_stats: a dictionary object containing all the summed up
         stats for the player.
-        :return: None
+        :return: None.
         """
         self.games_played = summed_stats.get('Matches Played', 0)
         self.assists = round(summed_stats.get('Assists', 0))
