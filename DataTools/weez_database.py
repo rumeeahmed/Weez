@@ -89,7 +89,7 @@ class WeezDatabase:
             'team_demolisher': awards.team_demolisher,
             'weary_traveller': awards.weary_traveller,
             'big_spender': awards.big_spender,
-            'crate_scavenger': awards.crate_scavenger,
+            'hungry_bitch': awards.hungry_bitch,
             'pussio': awards.pussio,
         }
         self.db.collection('awards').document(awards.date).set(data)

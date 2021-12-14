@@ -175,7 +175,7 @@ class WeezAwards:
 
         for player in self.player_list:
             if player.crates_opened > crates_opened:
-                self.crate_scavenger = player.player_name
+                self.hungry_bitch = player.player_name
                 crates_opened = player.crates_opened
 
     def process_player_stats(self) -> None:
@@ -213,6 +213,6 @@ class WeezAwards:
                   f'{self.team_demolisher} is the team demolisher\n' \
                   f'{self.weary_traveller} is the weary traveller\n' \
                   f'{self.big_spender} is the big spender\n' \
-                  f'{self.crate_scavenger} is the hungry bitch\n' \
+                  f'{self.hungry_bitch} is the hungry bitch\n' \
                   f'{self.pussio} is the pussi o\n'
         return results
