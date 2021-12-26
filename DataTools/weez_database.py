@@ -27,7 +27,7 @@ class WeezDatabase:
 
     def _add_player(self, player_list: list[Player]) -> None:
         """
-        Add the players to the players collection.
+        Add the players to the players' collection.
         :param player_list: a list containing player objects.
         :return: None
         """

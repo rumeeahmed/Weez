@@ -126,7 +126,8 @@ class Team:
     def __init__(self, player_list: list[Player]):
         """
 
-        :param player_list: a list object containing Player objects which then make up a Team.
+        :param player_list: a list object containing Player objects which then
+        make up a Team.
         """
         self.player_list = player_list
         self.date = player_list[0].date
@@ -134,7 +135,7 @@ class Team:
     def process_team_stats(self) -> None:
         """
         Process the total team stats and the average stats per game.
-        :return: None
+        :return: None.
         """
         self._get_total_team_stats()
         self._get_team_average_match_stats()
