@@ -12,11 +12,11 @@ class Player:
         self.gn = None
         self.judge = False
 
-    def process_stats(self, stats: dict) -> None:
+    def process_stats(self, stats: list) -> None:
         """
         Process all the raw stats and then sum them all up for the player.
-        :param stats: a dictionary object that contains all the players
-        individual match data.
+        :param stats: a list object that contains all the players individual
+        match data.
         :return: None.
         """
         val = {
