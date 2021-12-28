@@ -1,7 +1,7 @@
 from AnalysisTools.weez_analysis import GNCalculator
 from AnalysisTools.weez_reader import Player
-from unittest import TestCase
 from unittest.mock import patch
+from unittest import TestCase
 import json
 
 
