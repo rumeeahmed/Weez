@@ -1,8 +1,8 @@
 from AnalysisTools.weez_analysis import GNCalculator
 from AnalysisTools.weez_reader import Player
+from Tests.data_loader import DataLoader
 from unittest.mock import patch
 from unittest import TestCase
-import json
 
 
 class TestGNCalculator(TestCase):
@@ -15,19 +15,8 @@ class TestGNCalculator(TestCase):
         Set up a test GNCalculator object for every test.
         :return: None.
         """
-        self.data = []
-        with open("test_data.json", "r") as content:
-            raw_data = json.load(content)
-            matches = raw_data['data']['matches'][:6]
-            self.data = []
-
-            for match in matches:
-                cleaned_stat = {}
-                stats = match['segments'][0]['stats']
-
-                for key, value in stats.items():
-                    cleaned_stat[key] = value['value']
-                self.data.append(cleaned_stat)
+        self.loader = DataLoader('Captain Ahmed')
+        self.data = self.loader.get_cleaned_matches()
 
         self.player = Player('The Golden God')
         self.player.process_stats(self.data)
@@ -36,7 +25,7 @@ class TestGNCalculator(TestCase):
     def test_get_damage_gn(self) -> None:
         """
         Test the `get_damage_gn` method in the GNCaluclator object.
-        :return: None
+        :return: None.
         """
         games_played = self.player.games_played
         if self.player.player_name == 'The Golden God':
@@ -65,7 +54,7 @@ class TestGNCalculator(TestCase):
         """
         Test the `gn_judgement`, the value returned should be false as the
         Players gn is higher than their damage.
-        :return: None
+        :return: None.
         """
         self.player.gn = 2000
         actual = self.gn_calculator.gn_judgement()

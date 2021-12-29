@@ -1,6 +1,6 @@
 from AnalysisTools.weez_reader import Player
+from Tests.data_loader import DataLoader
 from unittest import TestCase
-import json
 
 
 class TestReader(TestCase):
@@ -14,18 +14,8 @@ class TestReader(TestCase):
         :return: None.
         """
         self.player = Player('The Golden God')
-        with open("test_data.json", "r") as content:
-            raw_data = json.load(content)
-            matches = raw_data['data']['matches'][:6]
-            self.data = []
-
-            for match in matches:
-                cleaned_stat = {}
-                stats = match['segments'][0]['stats']
-
-                for key, value in stats.items():
-                    cleaned_stat[key] = value['value']
-                self.data.append(cleaned_stat)
+        self.loader = DataLoader('Captain Ahmed')
+        self.data = self.loader.get_cleaned_matches()
 
     def test_unit(self) -> None:
         """
@@ -68,7 +58,7 @@ class TestReader(TestCase):
         expected value.
         :return: None.
         """
-        with open('expected_player_stats.txt') as expected_file:
+        with open('Data/expected_player_stats.txt') as expected_file:
             expected = expected_file.read()
         self.player.process_stats(self.data)
         actual = self.player.get_stats()

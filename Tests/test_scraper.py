@@ -1,8 +1,8 @@
 from Scraper.weez_scraper import WeezScraper
+from Tests.data_loader import DataLoader
 from unittest.mock import patch
 from datetime import datetime
 from unittest import TestCase
-import json
 
 
 class TestScraper(TestCase):
@@ -16,8 +16,7 @@ class TestScraper(TestCase):
         :return: None
         """
         self.scraper = WeezScraper('Buttpunch69#5164309', 'atvi')
-        with open("test_data.json", "r") as content:
-            self.data = json.load(content)
+        self.loader = DataLoader('Captain Ahmed')
 
     def test_unit(self) -> None:
         """
@@ -58,7 +57,7 @@ class TestScraper(TestCase):
         :return: None.
         """
 
-        data = self.data['data']['matches']
+        data = self.loader.get_matches()
 
         with patch(
             'Scraper.weez_scraper.WeezScraper._build_url'
@@ -86,7 +85,7 @@ class TestScraper(TestCase):
         called. Then check that the returned data is a list with 6 items.
         :return: None.
         """
-        data = self.data['data']['matches'][:6]
+        matches = self.loader.get_current_matches()
 
         with patch(
             'Scraper.weez_scraper.WeezScraper._build_url'
@@ -99,7 +98,7 @@ class TestScraper(TestCase):
             ]
         ) as mocked_matches, patch(
             'Scraper.weez_scraper.WeezScraper._get_current_matches',
-            return_value=data, side_effects=self.scraper._get_matches()
+            return_value=matches, side_effects=self.scraper._get_matches()
         ) as mocked_current_matches:
 
             actual = self.scraper._get_current_matches()
@@ -120,7 +119,7 @@ class TestScraper(TestCase):
         contain the specified keys.
         :return: None.
         """
-        matches = self.data['data']['matches'][:6]
+        matches = self.loader.get_current_matches()
         data = []
         for match in matches:
             stats = match['segments'][0]['stats']
@@ -176,7 +175,7 @@ class TestScraper(TestCase):
         contain the specified keys.
         :return: None.
         """
-        matches = self.data['data']['matches'][:6]
+        matches = self.loader.get_current_matches()
         data = []
 
         for match in matches:
