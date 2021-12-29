@@ -31,7 +31,6 @@ class TestTeam(TestCase):
         :return: None.
         """
         assert self.team.player_list == self.player_list
-        print(self.team.date)
         assert self.team.date is None
 
     def test_process_team_stats(self) -> None:

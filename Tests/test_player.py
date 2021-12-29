@@ -22,7 +22,7 @@ class TestReader(TestCase):
         Test the properties of the player object.
         :return: None.
         """
-        assert self.player.player_name == 'The Golden God'
+        assert self.player.player_name == 'Captain Ahmed'
         assert self.player.judge is False
         assert self.player.gn is None
 
@@ -35,7 +35,7 @@ class TestReader(TestCase):
 
         self.player.process_stats(self.data)
 
-        assert self.player.player_name == 'The Golden God'
+        assert self.player.player_name == 'Captain Ahmed'
         assert self.player.kills == 4
         assert self.player.assists == 2
         assert self.player.deaths == 12
@@ -60,6 +60,7 @@ class TestReader(TestCase):
         """
         with open('Data/expected_player_stats.txt') as expected_file:
             expected = expected_file.read()
+
         self.player.process_stats(self.data)
         actual = self.player.get_stats()
         assert actual == expected
