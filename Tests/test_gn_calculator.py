@@ -15,10 +15,10 @@ class TestGNCalculator(TestCase):
         Set up a test GNCalculator object for every test.
         :return: None.
         """
-        self.loader = DataLoader('Captain Ahmed')
-        self.data = self.loader.get_cleaned_matches()
 
-        self.player = Player('The Golden God')
+        self.player = Player('Captain Ahmed')
+        self.loader = DataLoader(self.player.player_name)
+        self.data = self.loader.get_cleaned_matches()
         self.player.process_stats(self.data)
         self.gn_calculator = GNCalculator(self.player)
 

@@ -15,6 +15,9 @@ class WeezAwards:
         self.pussio = 'Cheen'
         self.date = player_list[0].date
 
+    def __repr__(self) -> str:
+        return f'WeezAwards({self.player_list})'
+
     def _get_bullet_bitch(self) -> None:
         """
         Calculate the Player who has absorbed the most damage in the session.

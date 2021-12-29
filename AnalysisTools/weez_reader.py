@@ -12,6 +12,9 @@ class Player:
         self.gn = None
         self.judge = False
 
+    def __repr__(self) -> str:
+        return f'Player({self.player_name})'
+
     def process_stats(self, stats: list) -> None:
         """
         Process all the raw stats and then sum them all up for the player.
@@ -131,6 +134,9 @@ class Team:
         """
         self.player_list = player_list
         self.date = player_list[0].date
+
+    def __repr__(self) -> str:
+        return f'Team({self.player_list})'
 
     def process_team_stats(self) -> None:
         """

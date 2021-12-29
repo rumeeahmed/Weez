@@ -14,6 +14,9 @@ class GNCalculator:
         """
         self.player = player
 
+    def __repr__(self) -> str:
+        return f'GNCalculator({self.player})'
+
     def get_damage_gn(self) -> float:
         """
         Function that generates the aspirational damage GN for any given Player.

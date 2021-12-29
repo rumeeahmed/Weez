@@ -13,8 +13,8 @@ class TestReader(TestCase):
         Set up a test scraper object for every test.
         :return: None.
         """
-        self.player = Player('The Golden God')
-        self.loader = DataLoader('Captain Ahmed')
+        self.player = Player('Captain Ahmed')
+        self.loader = DataLoader(self.player.player_name)
         self.data = self.loader.get_cleaned_matches()
 
     def test_unit(self) -> None:

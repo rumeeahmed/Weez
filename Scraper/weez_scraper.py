@@ -21,6 +21,9 @@ class WeezScraper:
         self.platform = platform.lower()
         self.stats = []
 
+    def __repr__(self) -> str:
+        return f'WeezScraper({self.username}, {self.platform})'
+
     def _construct_timestamp(self) -> None:
         """
         Get the current timestamp in milliseconds.
